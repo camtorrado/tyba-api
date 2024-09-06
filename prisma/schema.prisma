@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String        @id @default(uuid())
+  email        String        @unique @db.VarChar(100)
+  password     String        @db.VarChar(255)
+  username     String        @unique @db.VarChar(50)
+  createdAt    DateTime      @default(now()) @map("created_at")
+  transactions Transaction[] @relation("UserTransactions") // Relación inversa
+
+  @@map("Users")
+}
+
+model Transaction {
+  id        String   @id @default(cuid())
+  type      String // 'login', 'registration', 'restaurant_query'
+  details   String? // Optional details about the transaction
+  userId    String?
+  user      User?    @relation("UserTransactions", fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model RevokedToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  revokedAt DateTime @default(now())
+
+  @@index([token])
+}
