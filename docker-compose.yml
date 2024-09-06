@@ -10,8 +10,6 @@ services:
     env_file:                         
       - .env
     command: sh -c "npx prisma migrate deploy && npm start"  
-    volumes:
-      - .:/usr/src/app                
 
   db:
     image: postgres:latest
