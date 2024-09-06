@@ -1,6 +1,6 @@
 import { ITransactionRepository } from "../interfaces/ITransactionRepository";
 import { Transaction } from "../../entities/Transaction";
-import { PrismaClient, Transaction as PrismaTransaction } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 /**
  * Implements the transaction repository using Prisma.
  */
@@ -44,7 +44,7 @@ export class PrismaTransactionRepository implements ITransactionRepository {
   async getAllTransactions(): Promise<Transaction[]> {
     const transactions = await this.prisma.transaction.findMany();
     return transactions.map(
-      (transaction: PrismaTransaction) =>
+      (transaction: Transaction) =>
         new Transaction(
           transaction.id,
           transaction.type,

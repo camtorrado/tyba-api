@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/server.js",
+    "build": "tsc",     
+    "start": "node dist/server.js",  
     "dev": "nodemon src/server.ts",
     "test": "jest",
-    "build": "tsc",
     "migrate": "prisma migrate deploy",
     "docker:up": "docker-compose up --build",
     "docker:down": "docker-compose down",

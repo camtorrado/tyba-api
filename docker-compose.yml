@@ -7,12 +7,11 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    environment:
-      DATABASE_URL: postgresql://postgres:tyba04@db:5432/postgres?schema=public
-      JWT_SECRET: e3d225c799cc83055610f4dcd48a142c06f12acae74a2e5388cf9a47d3ba4e47
-      JWT_ACCESS_TOKEN_EXPIRE_TIME: 1h
-      HERE_API_KEY: rkFSysgg43J9IMWsKnfvzSfSzgvQ6EGEZaZoW7cJgwk
-    command: sh -c "npx prisma migrate deploy && npm start"
+    env_file:                         
+      - .env
+    command: sh -c "npx prisma migrate deploy && npm start"  
+    volumes:
+      - .:/usr/src/app                
 
   db:
     image: postgres:latest
