@@ -1,20 +1,15 @@
-# Ignorar node_modules ya que las dependencias se instalan dentro del contenedor
 node_modules
 npm-debug.log
 yarn-debug.log
 
-# Ignorar la carpeta de distribución si se genera en el contenedor
 dist
 
-# Ignorar logs
 logs
 *.log
 
-# Archivos de Git
 .git
 .gitignore
 
-# Configuraciones de IDE/editores
 .idea
 .vscode
 *.suo
@@ -23,7 +18,6 @@ logs
 *.sln
 *.sw?
 
-# Dockerfile y archivos de configuración de Docker
 Dockerfile
 docker-compose.yml
 docker-compose.override.yml
