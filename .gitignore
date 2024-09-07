@@ -34,10 +34,6 @@ pids/
 # System files
 .DS_Store
 
-# Prisma files
-.prisma/
-prisma/migrations/
-
 # Docker overrides
 docker-compose.override.yml
 
