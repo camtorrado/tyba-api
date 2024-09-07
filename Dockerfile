@@ -1,14 +1,13 @@
-FROM node:20.17.0
+FROM node:20.17.0-alpine3.19
 
+RUN npm install -g ts-node
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-RUN npm install -g ts-node
-
 COPY . .
 
-RUN npx prisma generate
 RUN npm install
+RUN npx prisma generate
 
 EXPOSE 3000
 
